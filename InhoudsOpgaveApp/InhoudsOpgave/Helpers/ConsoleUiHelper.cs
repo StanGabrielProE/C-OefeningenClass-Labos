@@ -9,7 +9,7 @@ public static class ConsoleUiHelper<T> where T:INumber<T>
 
 
 
-    public  static T ConvertToNumber(Func<string> userInput ,Predicate<string>condition,string? prompt = null)
+    public  static T ConvertToNumber(Func<string> userInput ,Predicate<string>condition,string? errorMsg = null)
     {
         string input = userInput();
         T result = T.Zero;
@@ -17,8 +17,8 @@ public static class ConsoleUiHelper<T> where T:INumber<T>
 
         while (!condition(input)) 
         {
-         
-            Console.WriteLine(prompt);
+
+            errorMsg.PrintToConsole();
              input = userInput();
         
         } 
@@ -31,26 +31,33 @@ public static class ConsoleUiHelper<T> where T:INumber<T>
 }
 public static class ConsoleUiHelper
 {
-    public static DateTime ConvertToDateTime(this Func<string> userInput, string? prompt=null)
+    public static DateTime ConvertToDateTime(this Func<string> userInput, string? errorMsg = null)
     {
-        Console.WriteLine(prompt);
+        Console.WriteLine(errorMsg);
         DateTime dateOfBirth;
         string input = userInput();
         while (!DateTime.TryParseExact(input.Trim(), "dd MM yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateOfBirth))
         {
-            Console.WriteLine("Invalid Date format dd MM yyyy");
+            errorMsg.PrintToConsole();
             input = userInput();
         }
         return dateOfBirth;
     }
 
-    public static string NameValidator(this Func<string> input, string? prompt=null)
+    public static void PrintToConsole(this string? str)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(str);
+        Console.ResetColor();
+    }
+
+    public static string NameValidator(this Func<string> input, string? errorMsg=null)
     {
         string name = input();
 
         while (string.IsNullOrEmpty(name))
         {
-            Console.WriteLine(prompt);
+            errorMsg.PrintToConsole();
             name = input();
         }
         return name;
