@@ -1,11 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Drawing;
+using System.Globalization;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace InhoudsOpgave.Models;
 
 public class Employee
 {
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public DateTime DateOfBirth { get; set; }
+    public int? Age => DateOfBirth.ConvertToAge();
+    public decimal Salaris { get; set; }
+    public Employee() : this("", "")
+    {
+             
+    }
+    public Employee(string firstName,string lastName)
+    {
+        FirstName = firstName;
+        LastName = lastName; 
+    }
+
+    public override string ToString()
+    {
+        return $"Samenvating : {FirstName} {LastName} -({Age})  Salaris: {Salaris}";
+    }
+
+
 }
+
+        
+    
+
+
+
