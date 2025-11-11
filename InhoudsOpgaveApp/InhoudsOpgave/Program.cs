@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using InhoudsOpgave.Helpers;
 using InhoudsOpgave.Models;
-using static  System.Console;
+
 using static InhoudsOpgave.Helpers.ConsoleUiHelper;
 
 
@@ -20,29 +20,31 @@ internal class Program
 
 
         Console.WriteLine("First Name:");
-        string name = userInput.NameValidator("Voeg jouw naam in ");
+        string name = userInput.NameValidator("ERROR: try to enter your First Name again ");
         Console.WriteLine("Last Name:");
-        string lastName =userInput.NameValidator("Voeg jouw Familie Naam in ");
+        string lastName =userInput.NameValidator("ERROR: try to enter your First Name again");
 
         Employee employee = new Employee(name, lastName);
-        WriteLine("Date of Birth :");
+        Console.WriteLine("Date of Birth :");
 
         employee.DateOfBirth = userInput.ConvertToDateTime("Voer jouw geboorte datum in");
-        WriteLine("Salaris;");
+       Console.WriteLine("Salaris (dddd || dddd .... n x d)");
         decimal salaris = 
             ConsoleUiHelper<decimal>.ConvertToNumber(
             userInput,(x)=>Regex.IsMatch(x,@"\d{4,}"),
-            "Salaris:");
+            "ERROR: Salaris  must be in this format(dddd || dddd .... n x d)");
 
 
         employee.Salaris = salaris;
 
         employee.ShowDetails();
-        WriteLine("Increase Salary ");
-        int salarisProcentage = 
+
+       Console.WriteLine("Increase Salary (1-10): ");
+
+        int salarisProcentage =
             ConsoleUiHelper<int>.ConvertToNumber(
             userInput, (x) => Regex.IsMatch(x, @"^(?:[1-9]|10)$"),
-            "Enter jouw maand salaris");
+            "ERROR :Reduction (1-10))");
 
         employee.IncreaseSalary(salarisProcentage, ref salaris);
         employee.Salaris = salaris;

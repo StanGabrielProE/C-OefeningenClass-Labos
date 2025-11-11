@@ -54,7 +54,5 @@ public static class ConsoleUiHelper
             name = input();
         }
         return name;
-
-
     }
 }
