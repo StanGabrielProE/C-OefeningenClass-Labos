@@ -27,7 +27,7 @@ internal class Program
         Employee employee = new Employee(name, lastName);
         Console.WriteLine("Date of Birth :");
 
-        employee.DateOfBirth = userInput.ConvertToDateTime("Voer jouw geboorte datum in");
+        employee.DateOfBirth = userInput.ConvertToDateTime("ERROR : Date of Birth format dd MM yyyy");
        Console.WriteLine("Salaris (dddd || dddd .... n x d)");
         decimal salaris = 
             ConsoleUiHelper<decimal>.ConvertToNumber(
