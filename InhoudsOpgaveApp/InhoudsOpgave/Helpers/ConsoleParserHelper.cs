@@ -5,6 +5,11 @@ namespace InhoudsOpgave.Helpers;
 
 public static class ConsoleParserHelper
 {
+     /// <summary>
+     /// Calculates the age and returns it as Int32
+     /// </summary>
+     /// <param name="birthDate">Represents the date of birth in DateTime Format</param>
+     /// <returns></returns>
     public static int? ConvertToAge(this DateTime birthDate)
     {
         DateTime dateOfToday = DateTime.Now;
@@ -33,6 +38,7 @@ public static class ConsoleParserHelper
     {
 
         Clear();
+        ForegroundColor = ConsoleColor.DarkYellow;
         OutputEncoding = Encoding.UTF8;
         if (percentage != 0)
         {
@@ -45,6 +51,7 @@ public static class ConsoleParserHelper
         WriteLine($"Salaris: {Math.Round(employee.Salaris, 2):C}");
         WriteLine("----------------------------------------------");
         WriteLine(employee.ToString());
+        ResetColor();
     }
 }
 
