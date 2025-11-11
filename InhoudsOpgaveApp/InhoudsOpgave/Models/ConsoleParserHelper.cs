@@ -15,6 +15,14 @@ public static class ConsoleParserHelper
 
 
     }
+    public static string ConvertToNameFormat(this string input) 
+    {
+        ReadOnlySpan<char> chars = input.Trim().ToLower();
+        string myStrng = chars[0].ToString().ToUpper();
+
+        return string.Concat(chars[0].ToString().ToUpper(),
+            chars.Slice(1));
+    }
 }
 
         

@@ -10,7 +10,7 @@ public class ConsoleUiHelper < T > where T :INumber<T>
     {
         DateTime dateOfToday = DateTime.Now;
         DateTime dateOfBirth;
-        while (!DateTime.TryParseExact(userInput, "dd MM yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateOfBirth))
+        while (!DateTime.TryParseExact(userInput.Trim(), "dd MM yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateOfBirth))
         {
             Console.WriteLine("Invalid Date format dd MM yyyy");
             userInput = Console.ReadLine();
@@ -27,7 +27,7 @@ public class ConsoleUiHelper < T > where T :INumber<T>
     public  T ConvertToNumber( string userInput)
     {
         T result;
-        while (!T.TryParse(userInput,CultureInfo.InvariantCulture, out result))
+        while (!T.TryParse(userInput.Trim(),CultureInfo.InvariantCulture, out result))
         {
             Console.WriteLine($"Voer een geldig number in. Input: {userInput} past voor deze situatie niet toe");
             userInput = Console.ReadLine();
