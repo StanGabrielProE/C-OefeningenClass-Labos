@@ -18,10 +18,7 @@ public class Employee
 
     public int? Age => DateOfBirth.ConvertToAge();
 
-    public Employee() : this("", "")
-    {
-             
-    }
+
     public Employee(string firstName,string lastName)
     {
         FirstName = firstName.ConvertToNameFormat();
@@ -30,7 +27,7 @@ public class Employee
 
     public override string ToString()
     {
-        return $"Samenvating : {FirstName} {LastName} -({Age})  Salaris: {Salaris}";
+        return $"Samenvating : {FirstName} {LastName} -({Age})  Salaris: {Math.Round(Salaris,2):C}";
     }
     public void IncreaseSalary(int input , ref decimal initialSalary) 
     {

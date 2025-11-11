@@ -17,8 +17,11 @@ public static class ConsoleParserHelper
     }
     public static string ConvertToNameFormat(this string input) 
     {
+        if (string.IsNullOrWhiteSpace(input))
+            return string.Empty;
+
         ReadOnlySpan<char> chars = input.Trim().ToLower();
-        string myStrng = chars[0].ToString().ToUpper();
+        
 
         return string.Concat(chars[0].ToString().ToUpper(),
             chars.Slice(1));

@@ -9,13 +9,14 @@ public static class ConsoleUiHelper<T> where T:INumber<T>
 
 
 
-    public  static T ConvertToNumber(string userInput)
+    public  static T ConvertToNumber(Func<string> userInput)
     {
         T result;
-        while (!T.TryParse(userInput.Trim(),CultureInfo.InvariantCulture, out result))
+        string input = userInput();
+        while (!T.TryParse(input.Trim(),CultureInfo.InvariantCulture, out result))
         {
             Console.WriteLine($"Voer een geldig number in. Input: {userInput} past voor deze situatie niet toe");
-            userInput = Console.ReadLine();
+            input = userInput();
         }
     
         return result;
