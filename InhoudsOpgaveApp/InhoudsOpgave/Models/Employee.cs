@@ -7,11 +7,8 @@ namespace InhoudsOpgave.Models;
 
 public class Employee
 {
-   string _firstName;
-    string _LastName;
-   decimal _salaris;
-   DateTime _dob;
 
+  
 
 
     public string FirstName { get; set; }

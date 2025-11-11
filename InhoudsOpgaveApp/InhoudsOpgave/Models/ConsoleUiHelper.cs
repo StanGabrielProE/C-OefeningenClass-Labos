@@ -6,7 +6,7 @@ namespace InhoudsOpgave.Models;
 
 public static class ConsoleUiHelper<T> where T:INumber<T>
 {
-    public  static DateTime ConvertToDateTime( Func<string> userInput)
+    public  static DateTime ConvertToDateTime(Func<string> userInput)
     {
         
         DateTime dateOfBirth;
