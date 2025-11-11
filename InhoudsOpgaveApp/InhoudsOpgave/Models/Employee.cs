@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
+using static System.Console;
 
 namespace InhoudsOpgave.Models;
 
@@ -37,6 +38,8 @@ public class Employee
             initialSalary += initialSalary * input / 100;
         
     }
+
+
 
 }
 

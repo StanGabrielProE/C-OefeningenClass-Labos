@@ -1,7 +1,7 @@
-﻿using System.Text;
+﻿global using System.Text;
 using InhoudsOpgave.Helpers;
 using InhoudsOpgave.Models;
-using static System.Console;
+using static  System.Console;
 using static InhoudsOpgave.Helpers.ConsoleUiHelper;
 
 
@@ -26,33 +26,16 @@ internal class Program
         decimal salaris = ConsoleUiHelper<decimal>.ConvertToNumber(() => ReadLine());
         employee.Salaris = salaris;
 
-        ShowDetails(employee);
+        employee.ShowDetails();
         Console.WriteLine("Increase Salary ");
         int salarisProcentage = ConsoleUiHelper<int>.ConvertToNumber(() => ReadLine());
    
         employee.IncreaseSalary(salarisProcentage, ref salaris);
         employee.Salaris = salaris;
-        ShowDetails(employee);
+        employee.ShowDetails(salarisProcentage);
     }
 
 
-    public static void ShowDetails(Employee employee, decimal percentage = 0m)
-    {
-   
-        Clear();
-        OutputEncoding = Encoding.UTF8;
-        if (percentage != 0)
-        {
-            WriteLine($"Opslag percentage: {percentage}");
-        }
-        WriteLine("----------------------------------------------");
-        WriteLine($"Werknemer: {employee.FirstName} {employee.LastName}");
-
-        WriteLine($"Geboortedatum: {employee.DateOfBirth.ToString("dddd dd MMMM yyyy")} ({employee.Age})");
-        WriteLine($"Salaris: {Math.Round(employee.Salaris,2):C}");
-        WriteLine("----------------------------------------------");
-        WriteLine(employee.ToString());
-    }
 
 
 }
