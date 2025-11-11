@@ -1,29 +1,30 @@
-﻿using System.Globalization;
+﻿using InhoudsOpgave.Models;
+using System.Globalization;
 using System.Numerics;
-using System.Runtime.CompilerServices;
+using static System.Console;
 
 namespace InhoudsOpgave.Helpers;
 
-public static class ConsoleUiHelper<T> where T:INumber<T>
+public static class ConsoleUiHelper<T> where T : INumber<T>
 {
 
 
 
-    public  static T ConvertToNumber(Func<string> userInput ,Predicate<string>condition,string? errorMsg = null)
+    public static T ConvertToNumber(Func<string> userInput, Predicate<string> condition, string? errorMsg = null)
     {
         string input = userInput();
         T result = T.Zero;
 
 
-        while (!condition(input)) 
+        while (!condition(input))
         {
 
             errorMsg.PrintToConsole();
-             input = userInput();
-        
-        } 
+            input = userInput();
 
-        result = T.Parse(input,CultureInfo.InvariantCulture);
+        }
+
+        result = T.Parse(input, CultureInfo.InvariantCulture);
         return result;
     }
 
@@ -33,7 +34,7 @@ public static class ConsoleUiHelper
 {
     public static DateTime ConvertToDateTime(this Func<string> userInput, string? errorMsg = null)
     {
-       
+
         DateTime dateOfBirth;
         string input = userInput();
         while (!DateTime.TryParseExact(input.Trim(), "dd MM yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateOfBirth))
@@ -46,12 +47,12 @@ public static class ConsoleUiHelper
 
     public static void PrintToConsole(this string? str)
     {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine(str);
-        Console.ResetColor();
+        ForegroundColor = ConsoleColor.Red;
+        WriteLine(str);
+        ResetColor();
     }
 
-    public static string NameValidator(this Func<string> input, string? errorMsg=null)
+    public static string NameValidator(this Func<string> input, string? errorMsg = null)
     {
         string name = input();
 
@@ -61,5 +62,24 @@ public static class ConsoleUiHelper
             name = input();
         }
         return name;
+    }
+    public static void ShowDetails(this Employee employee, decimal percentage = 0m)
+    {
+
+        Clear();
+        ForegroundColor = ConsoleColor.DarkYellow;
+        OutputEncoding = Encoding.UTF8;
+        if (percentage != 0)
+        {
+            WriteLine($"Opslag percentage: {percentage}");
+        }
+        WriteLine("----------------------------------------------");
+        WriteLine($"Werknemer: {employee.FirstName} {employee.LastName}");
+
+        WriteLine($"Geboortedatum: {employee.DateOfBirth.ToString("dddd dd MMMM yyyy")} ({employee.Age})");
+        WriteLine($"Salaris: {Math.Round(employee.Salaris, 2):C}");
+        WriteLine("----------------------------------------------");
+        WriteLine(employee.ToString());
+        ResetColor();
     }
 }
