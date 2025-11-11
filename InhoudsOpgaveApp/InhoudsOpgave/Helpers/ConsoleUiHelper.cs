@@ -33,7 +33,7 @@ public static class ConsoleUiHelper
 {
     public static DateTime ConvertToDateTime(this Func<string> userInput, string? errorMsg = null)
     {
-        Console.WriteLine(errorMsg);
+       
         DateTime dateOfBirth;
         string input = userInput();
         while (!DateTime.TryParseExact(input.Trim(), "dd MM yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateOfBirth))
