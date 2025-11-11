@@ -1,7 +1,8 @@
 ﻿using System.Text;
+using InhoudsOpgave.Helpers;
 using InhoudsOpgave.Models;
 using static System.Console;
-using static InhoudsOpgave.Models.ConsoleUiHelper;
+using static InhoudsOpgave.Helpers.ConsoleUiHelper;
 
 
 

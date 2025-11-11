@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using InhoudsOpgave.Helpers;
+using System.Drawing;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;

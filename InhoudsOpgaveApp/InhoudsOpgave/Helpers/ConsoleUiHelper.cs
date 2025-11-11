@@ -2,7 +2,7 @@
 using System.Numerics;
 using System.Runtime.CompilerServices;
 
-namespace InhoudsOpgave.Models;
+namespace InhoudsOpgave.Helpers;
 
 public static class ConsoleUiHelper<T> where T:INumber<T>
 {
