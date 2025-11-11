@@ -20,7 +20,10 @@ public class Employee
 
     public int? Age => DateOfBirth.ConvertToAge();
 
+    public Employee() : this ("Unknown","Unknown")
+    {
 
+    }
     public Employee(string firstName,string lastName)
     {
         FirstName = firstName.ConvertToNameFormat();
