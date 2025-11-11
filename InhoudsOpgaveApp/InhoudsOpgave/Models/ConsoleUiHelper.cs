@@ -4,27 +4,23 @@ using System.Runtime.CompilerServices;
 
 namespace InhoudsOpgave.Models;
 
-public class ConsoleUiHelper < T > where T :INumber<T>
+public static class ConsoleUiHelper<T> where T:INumber<T>
 {
-    public  DateTime ConvertToDateTime( string userInput)
+    public  static DateTime ConvertToDateTime( Func<string> userInput)
     {
-        DateTime dateOfToday = DateTime.Now;
+        
         DateTime dateOfBirth;
-        while (!DateTime.TryParseExact(userInput.Trim(), "dd MM yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateOfBirth))
+        string input = userInput();
+        while (!DateTime.TryParseExact(input.Trim(), "dd MM yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateOfBirth))
         {
             Console.WriteLine("Invalid Date format dd MM yyyy");
-            userInput = Console.ReadLine();
+            input = userInput();
         }
-
-
-        dateOfBirth = dateOfToday <= dateOfBirth ? DateTime.MinValue : dateOfBirth;
-
-
         return dateOfBirth;
     }
 
 
-    public  T ConvertToNumber( string userInput)
+    public  static T ConvertToNumber(string userInput)
     {
         T result;
         while (!T.TryParse(userInput.Trim(),CultureInfo.InvariantCulture, out result))
@@ -35,5 +31,4 @@ public class ConsoleUiHelper < T > where T :INumber<T>
     
         return result;
     }
-
 }
